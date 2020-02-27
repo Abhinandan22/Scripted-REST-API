@@ -1,0 +1,29 @@
+Printing the scripted rest api response :-
+
+request :- 
+
+{
+	"caller_id":"Abel Tuter",
+	"short_description":"Creating an incident via API",
+	"description":"Description of incident in API",
+	"assignment group":"CAB Approval"
+}
+
+response :- 
+
+{
+    "result": {
+        "body id": {
+            "caller_id": "Abel Tuter",
+            "short_description": "Creating an incident via API",
+            "description": "Description of incident in API",
+            "assignment group": "CAB Approval"
+        }
+    }
+}
+
+
+var requestBody = request.body.data;
+    return {
+        "body id": requestBody
+    };
