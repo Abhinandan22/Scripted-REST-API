@@ -1,0 +1,72 @@
+In this case I was able to create an incident and only one validation.However I have to perform more validation on this.
+
+
+
+Scripted REST API :- POST Resource
+
+
+(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    // implement resource here
+
+    var requestBody = request.body.data;
+
+    var responsevalid = new ValidationCheckSI().createIncident((requestBody));
+
+    response.setContentType('application/json');
+    response.setBody({
+        message: responsevalid
+    });
+
+})(request, response);
+
+
+
+
+ValidationReq :- Script Include
+
+
+var ValidationCheckSI = Class.create();
+ValidationCheckSI.prototype = {
+    initialize: function() {},
+
+
+    createIncident: function(req_obj) {
+		
+		var caller = req_obj.caller_id,
+		desc = req_obj.description,
+		short_desc = req_obj.short_description,
+		assgrp = req_obj.assignment_group,
+		state = req_obj.state;
+        
+		//Need to do validation for all the fields 
+		
+		if (JSUtil.nil(req_obj.caller_id))
+            
+            return gs.getMessage("UERR1010");
+		 else
+			{
+            var ga = new GlideRecord("incident");
+			ga.initialize();
+			ga.caller_id = caller;
+			ga.short_description = short_desc;
+			ga.description = desc;
+			ga.assignment_group = assgrp;
+			ga.state = state;
+			ga.insert();
+			return ga.number;
+	
+		}
+	},
+
+  ischeckValid: function(input) {
+
+        //gs.log("input = " + input);
+
+        return new SI_CHECK_VALIDATION().checkValUser(input);
+    },
+
+    type: 'ValidationCheckSI'
+};
+
+
