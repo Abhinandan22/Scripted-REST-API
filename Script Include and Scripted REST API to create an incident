@@ -70,3 +70,40 @@ ValidationCheckSI.prototype = {
 };
 
 
+var SI_CHECK_VALIDATION = Class.create();
+SI_CHECK_VALIDATION.prototype = {
+    initialize: function() {},
+
+    checkValUser: function(emptyInput) {
+
+
+        var user_obj = new GlideRecord("sys_user");
+        user_obj.addActiveQuery();
+        user_obj.addQuery('name', emptyInput);
+        user_obj.query();
+
+
+        while (user_obj.next()) {
+            
+           //Here typeof user_obj.name is object and emptyInput is string.Hence == not ===
+			if (user_obj.name == emptyInput)
+                return gs.getMessage("UERR078");
+            
+        }
+        return gs.getMessage("UERR1015");
+    },
+
+
+    /*var errorObj = {
+	 
+	 errorMsg : {
+	 
+	 "Error_cd":[];
+	 "Info_cd":[]
+	 }
+	
+};
+	*/
+
+    type: 'SI_CHECK_VALIDATION'
+};
