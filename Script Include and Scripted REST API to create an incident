@@ -107,3 +107,31 @@ SI_CHECK_VALIDATION.prototype = {
 
     type: 'SI_CHECK_VALIDATION'
 };
+
+
+Request :- 
+
+Header :- https://dev61497.service-now.com/api/87519/createticket/v1CT
+
+Request :-- 
+
+{
+	"caller_id":"asdf",
+	"short_description":"Creating an incident via API",
+	"description":"Description of incident in API",
+	"assignment_group":"Application Development",
+	"state":"2",
+	"opened_by":"System Administrator"
+	
+}
+
+
+Response :-
+
+{
+    "result": {
+        "message": "INC0010197"
+    }
+}
+
+
