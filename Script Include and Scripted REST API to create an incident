@@ -37,7 +37,8 @@ ValidationCheckSI.prototype = {
 		desc = req_obj.description,
 		short_desc = req_obj.short_description,
 		assgrp = req_obj.assignment_group,
-		state = req_obj.state;
+		state = req_obj.state,
+		ci = req_obj.cmdb_ci;
         
 		//Need to do validation for all the fields 
 		
