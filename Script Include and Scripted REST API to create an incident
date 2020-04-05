@@ -51,8 +51,9 @@ ValidationCheckSI.prototype = {
 			ga.caller_id = caller;
 			ga.short_description = short_desc;
 			ga.description = desc;
-			ga.assignment_group = assgrp;
+			ga.assignment_group.setDisplayValue(assgrp);
 			ga.state = state;
+			ga.cmdb_ci.setDisplayValue(ci);
 			ga.insert();
 			return ga.number;
 	
